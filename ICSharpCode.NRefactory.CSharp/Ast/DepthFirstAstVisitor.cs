@@ -1,4 +1,4 @@
-﻿// 
+// 
 // IAstVisitor.cs
 //
 // Author:
@@ -54,7 +54,11 @@ namespace ICSharpCode.NRefactory.CSharp {
 		{
 			VisitChildren (syntaxTree);
 		}
-		
+
+		public void VisitTypeAccessModifier(TypeAccessModifiers accessModifiers) {
+			VisitChildren(accessModifiers);
+		}
+
 		public virtual void VisitComment(Comment comment)
 		{
 			VisitChildren(comment);
@@ -661,7 +665,11 @@ namespace ICSharpCode.NRefactory.CSharp {
 		{
 			return VisitChildren (unit);
 		}
-		
+
+		public T VisitTypeAccessModifier(TypeAccessModifiers accessModifiers) {
+			return VisitChildren(accessModifiers);
+		}
+
 		public virtual T VisitComment (Comment comment)
 		{
 			return VisitChildren (comment);
@@ -1268,7 +1276,11 @@ namespace ICSharpCode.NRefactory.CSharp {
 		{
 			return VisitChildren (unit, data);
 		}
-		
+
+		public S VisitTypeAccessModifier(TypeAccessModifiers accessModifiers, T data) {
+			return VisitChildren(accessModifiers, data);
+		}
+
 		public virtual S VisitComment (Comment comment, T data)
 		{
 			return VisitChildren (comment, data);

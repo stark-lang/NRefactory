@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2010-2013 AlphaSierraPapa for the SharpDevelop Team
+// Copyright (c) 2010-2013 AlphaSierraPapa for the SharpDevelop Team
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy of this
 // software and associated documentation files (the "Software"), to deal in the Software
@@ -132,7 +132,7 @@ namespace ICSharpCode.NRefactory.CSharp {
 		void VisitComposedType(ComposedType composedType);
 		void VisitArraySpecifier(ArraySpecifier arraySpecifier);
 		void VisitPrimitiveType(PrimitiveType primitiveType);
-		
+		void VisitTypeAccessModifier(TypeAccessModifiers accessModifiers);
 		void VisitComment(Comment comment);
 		void VisitNewLine(NewLineNode newLineNode);
 		void VisitWhitespace(WhitespaceNode whitespaceNode);
@@ -264,7 +264,8 @@ namespace ICSharpCode.NRefactory.CSharp {
 		S VisitComposedType(ComposedType composedType);
 		S VisitArraySpecifier(ArraySpecifier arraySpecifier);
 		S VisitPrimitiveType(PrimitiveType primitiveType);
-		
+		S VisitTypeAccessModifier(TypeAccessModifiers accessModifiers);
+
 		S VisitComment(Comment comment);
 		S VisitWhitespace(WhitespaceNode whitespaceNode);
 		S VisitText(TextNode textNode);
@@ -396,7 +397,8 @@ namespace ICSharpCode.NRefactory.CSharp {
 		S VisitComposedType(ComposedType composedType, T data);
 		S VisitArraySpecifier(ArraySpecifier arraySpecifier, T data);
 		S VisitPrimitiveType(PrimitiveType primitiveType, T data);
-		
+		S VisitTypeAccessModifier(TypeAccessModifiers accessModifiers, T data);
+
 		S VisitComment(Comment comment, T data);
 		S VisitNewLine(NewLineNode newLineNode, T data);
 		S VisitWhitespace(WhitespaceNode whitespaceNode, T data);

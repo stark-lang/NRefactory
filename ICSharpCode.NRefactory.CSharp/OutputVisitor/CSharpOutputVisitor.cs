@@ -2847,11 +2847,22 @@ namespace ICSharpCode.NRefactory.CSharp {
 		public virtual void VisitComposedType(ComposedType composedType)
 		{
 			StartNode(composedType);
+
+			// stark: We are writing the access modifiers before
+			int count = 0;
+			foreach (var node in composedType.TypeAccessModifiers) {
+				if (count-- <= 0) {
+					cancellationToken.ThrowIfCancellationRequested();
+					count = CANCEL_CHECK_LOOP_COUNT;
+				}
+				node.AcceptVisitor(this);
+			}
+
 			composedType.BaseType.AcceptVisitor(this);
 			if (composedType.HasNullableSpecifier) {
 				WriteToken(ComposedType.NullableRole, BoxedTextColor.Operator);
 			}
-			int count = 0;
+			count = 0;
 			for (int i = 0; i < composedType.PointerRank; i++) {
 				if (count-- <= 0) {
 					cancellationToken.ThrowIfCancellationRequested();
@@ -2892,7 +2903,13 @@ namespace ICSharpCode.NRefactory.CSharp {
 			writer.WritePrimitiveType(primitiveType.Keyword);
 			EndNode(primitiveType);
 		}
-		
+
+		public void VisitTypeAccessModifier(TypeAccessModifiers accessModifiers) {
+			StartNode(accessModifiers);
+			writer.WriteKeyword(Roles.ExternKeyword, "#" + accessModifiers.Modifiers.ToString().Replace("|", " ").ToLower());
+			EndNode(accessModifiers);
+		}
+
 		public virtual void VisitComment(Comment comment)
 		{
 			writer.StartNode(comment);

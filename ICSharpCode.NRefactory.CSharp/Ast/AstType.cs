@@ -18,6 +18,7 @@
 
 using System;
 using System.Collections.Generic;
+using dnlib.DotNet;
 using ICSharpCode.NRefactory.TypeSystem;
 
 namespace ICSharpCode.NRefactory.CSharp {
@@ -189,7 +190,15 @@ namespace ICSharpCode.NRefactory.CSharp {
 		{
 			return new ComposedType { BaseType = this }.MakePointerType();
 		}
-		
+
+		/// <summary>
+		/// Creates an extended type from this type by nesting it in a <see cref="ComposedType"/>.
+		/// If this type already is a extended type, this method just modify the existing access modifiers.
+		/// </summary>
+		public virtual AstType MakeExtendedType(TypeModifiers modifiers) {
+			return new ComposedType { BaseType = this }.MakeExtendedType(modifiers);
+		}
+
 		/// <summary>
 		/// Creates an array type from this type by nesting it in a <see cref="ComposedType"/>.
 		/// If this type already is an array type, the additional rank is prepended to the existing array specifier list.

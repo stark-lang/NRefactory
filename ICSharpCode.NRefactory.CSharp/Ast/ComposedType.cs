@@ -1,4 +1,4 @@
-﻿// 
+// 
 // ComposedType.cs
 //
 // Author:
@@ -26,6 +26,7 @@
 using System;
 using System.Linq;
 using System.Text;
+using dnlib.DotNet;
 using ICSharpCode.NRefactory.TypeSystem;
 
 namespace ICSharpCode.NRefactory.CSharp {
@@ -34,7 +35,8 @@ namespace ICSharpCode.NRefactory.CSharp {
 		public static readonly TokenRole NullableRole = new TokenRole("?");
 		public static readonly TokenRole PointerRole = new TokenRole("*");
 		public static readonly Role<ArraySpecifier> ArraySpecifierRole = new Role<ArraySpecifier>("ArraySpecifier");
-		
+		public static readonly Role<TypeAccessModifiers> TypeAccessModifierRole = new Role<TypeAccessModifiers>("TypeAccessModifiers");
+
 		public AstType BaseType {
 			get { return GetChildByRole(Roles.Type); }
 			set { SetChildByRole(Roles.Type, value); }
@@ -76,6 +78,10 @@ namespace ICSharpCode.NRefactory.CSharp {
 		
 		public AstNodeCollection<ArraySpecifier> ArraySpecifiers {
 			get { return GetChildrenByRole (ArraySpecifierRole); }
+		}
+
+		public AstNodeCollection<TypeAccessModifiers> TypeAccessModifiers {
+			get { return GetChildrenByRole(TypeAccessModifierRole); }
 		}
 
 		public AstNodeCollection<CSharpTokenNode> PointerTokens {
@@ -129,7 +135,12 @@ namespace ICSharpCode.NRefactory.CSharp {
 				return this;
 			}
 		}
-		
+
+		public override AstType MakeExtendedType(TypeModifiers modifiers) {
+			InsertChildBefore(this.TypeAccessModifiers.FirstOrDefault(), new TypeAccessModifiers(modifiers), TypeAccessModifierRole);
+			return this;
+		}
+
 		public override AstType MakeArrayType(int dimensions)
 		{
 			InsertChildBefore(this.ArraySpecifiers.FirstOrDefault(), new ArraySpecifier(dimensions), ArraySpecifierRole);
@@ -152,6 +163,64 @@ namespace ICSharpCode.NRefactory.CSharp {
 				t = interningProvider.Intern(new ArrayTypeReference(t, a.Dimensions));
 			}
 			return t;
+		}
+	}
+
+	public class TypeAccessModifiers : AstNode {
+		public override NodeType NodeType {
+			get {
+				return NodeType.Unknown;
+			}
+		}
+
+		public TypeAccessModifiers() {
+		}
+
+		public TypeAccessModifiers(TypeModifiers modifier) {
+			this.Modifiers = modifier;
+		}
+
+		public TypeModifiers Modifiers {
+			get {
+				var node = GetChildrenByRole(Roles.Identifier).FirstOrDefault();
+				if (node == null) {
+					return TypeModifiers.None;
+				}
+				return (TypeModifiers)Enum.Parse(typeof(TypeModifiers), node.Name);
+			}
+			set {
+
+				var d = this.Modifiers;
+				d |= value;
+				var node = GetChildrenByRole(Roles.Identifier).FirstOrDefault();
+				if (node == null) {
+					AddChild(Identifier.Create(d.ToString(), TextLocation.Empty), Roles.Identifier);
+				}
+				else {
+					node.Name = d.ToString();
+				}
+			}
+		}
+
+		public override void AcceptVisitor(IAstVisitor visitor) {
+			visitor.VisitTypeAccessModifier(this);
+		}
+
+		public override T AcceptVisitor<T>(IAstVisitor<T> visitor) {
+			return visitor.VisitTypeAccessModifier(this);
+		}
+
+		public override S AcceptVisitor<T, S>(IAstVisitor<T, S> visitor, T data) {
+			return visitor.VisitTypeAccessModifier(this, data);
+		}
+
+		protected internal override bool DoMatch(AstNode other, PatternMatching.Match match) {
+			TypeAccessModifiers o = other as TypeAccessModifiers;
+			return o != null && this.Modifiers == o.Modifiers;
+		}
+
+		public override string ToString(CSharpFormattingOptions formattingOptions) {
+			return this.Modifiers.ToString().Replace("|", " ").ToLower();
 		}
 	}
 	

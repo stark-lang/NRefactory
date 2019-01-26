@@ -17,9 +17,8 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DefineConstants>$(DefineConstants);NET_4_5;NET_4_6</DefineConstants>
   </PropertyGroup>
-
   <ItemGroup>
-    <PackageReference Include="dnlib" Version="$(DnlibVersion)" />
+    <ProjectReference Include="..\..\..\..\..\dnlib\src\dnlib.csproj" />
   </ItemGroup>
 
 </Project>
