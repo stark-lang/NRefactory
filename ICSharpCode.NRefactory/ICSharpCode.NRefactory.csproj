@@ -18,7 +18,7 @@
     <DefineConstants>$(DefineConstants);NET_4_5;NET_4_6</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\dnlib\src\dnlib.csproj" />
+    <ProjectReference Include="..\..\..\..\..\stark-dnlib\src\dnlib.csproj" />
   </ItemGroup>
 
 </Project>
