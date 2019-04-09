@@ -503,7 +503,12 @@ namespace ICSharpCode.NRefactory.CSharp {
 		{
 			VisitChildren (sizeOfExpression);
 		}
-		
+
+		public void VisitLoadTypeArgumentExpression(LoadTypeArgumentExpression loadTypeArgumentExpression) 
+		{
+			VisitChildren(loadTypeArgumentExpression);
+		}
+
 		public virtual void VisitStackAllocExpression (StackAllocExpression stackAllocExpression)
 		{
 			VisitChildren (stackAllocExpression);
@@ -1114,7 +1119,11 @@ namespace ICSharpCode.NRefactory.CSharp {
 		{
 			return VisitChildren (sizeOfExpression);
 		}
-		
+
+		public T VisitLoadTypeArgumentExpression(LoadTypeArgumentExpression loadTypeArgumentExpression) {
+			return VisitChildren(loadTypeArgumentExpression);
+		}
+
 		public virtual T VisitStackAllocExpression (StackAllocExpression stackAllocExpression)
 		{
 			return VisitChildren (stackAllocExpression);
@@ -1725,7 +1734,12 @@ namespace ICSharpCode.NRefactory.CSharp {
 		{
 			return VisitChildren (sizeOfExpression, data);
 		}
-		
+
+		public S VisitLoadTypeArgumentExpression(LoadTypeArgumentExpression loadTypeArgumentExpression, T data) 
+		{
+			return VisitChildren(loadTypeArgumentExpression, data);
+		}
+
 		public virtual S VisitStackAllocExpression (StackAllocExpression stackAllocExpression, T data)
 		{
 			return VisitChildren (stackAllocExpression, data);

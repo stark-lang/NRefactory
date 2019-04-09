@@ -1266,7 +1266,14 @@ namespace ICSharpCode.NRefactory.CSharp {
 			
 			EndNode(sizeOfExpression);
 		}
-		
+
+		public void VisitLoadTypeArgumentExpression(LoadTypeArgumentExpression loadTypeArgumentExpression) {
+			DebugExpression(loadTypeArgumentExpression);
+			StartNode(loadTypeArgumentExpression);
+			loadTypeArgumentExpression.Type.AcceptVisitor(this);
+			EndNode(loadTypeArgumentExpression);
+		}
+
 		public virtual void VisitStackAllocExpression(StackAllocExpression stackAllocExpression)
 		{
 			DebugExpression(stackAllocExpression);

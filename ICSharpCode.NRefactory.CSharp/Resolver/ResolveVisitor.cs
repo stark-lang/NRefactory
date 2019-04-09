@@ -1663,7 +1663,11 @@ namespace ICSharpCode.NRefactory.CSharp.Resolver
 		{
 			return resolver.ResolveSizeOf(ResolveType(sizeOfExpression.Type));
 		}
-		
+
+		public ResolveResult VisitLoadTypeArgumentExpression(LoadTypeArgumentExpression loadTypeArgumentExpression) {
+			return resolver.ResolveSizeOf(ResolveType(loadTypeArgumentExpression.Type));
+		}
+
 		ResolveResult IAstVisitor<ResolveResult>.VisitStackAllocExpression(StackAllocExpression stackAllocExpression)
 		{
 			ResolveAndProcessConversion(stackAllocExpression.CountExpression, resolver.Compilation.FindType(KnownTypeCode.Int32));

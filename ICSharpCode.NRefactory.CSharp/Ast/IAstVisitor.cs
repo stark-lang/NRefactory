@@ -51,6 +51,7 @@ namespace ICSharpCode.NRefactory.CSharp {
 		void VisitPointerReferenceExpression(PointerReferenceExpression pointerReferenceExpression);
 		void VisitPrimitiveExpression(PrimitiveExpression primitiveExpression);
 		void VisitSizeOfExpression(SizeOfExpression sizeOfExpression);
+		void VisitLoadTypeArgumentExpression(LoadTypeArgumentExpression loadTypeArgumentExpression);
 		void VisitStackAllocExpression(StackAllocExpression stackAllocExpression);
 		void VisitThisReferenceExpression(ThisReferenceExpression thisReferenceExpression);
 		void VisitTypeOfExpression(TypeOfExpression typeOfExpression);
@@ -183,6 +184,7 @@ namespace ICSharpCode.NRefactory.CSharp {
 		S VisitPointerReferenceExpression(PointerReferenceExpression pointerReferenceExpression);
 		S VisitPrimitiveExpression(PrimitiveExpression primitiveExpression);
 		S VisitSizeOfExpression(SizeOfExpression sizeOfExpression);
+		S VisitLoadTypeArgumentExpression(LoadTypeArgumentExpression loadTypeArgumentExpression);
 		S VisitStackAllocExpression(StackAllocExpression stackAllocExpression);
 		S VisitThisReferenceExpression(ThisReferenceExpression thisReferenceExpression);
 		S VisitTypeOfExpression(TypeOfExpression typeOfExpression);
@@ -316,6 +318,7 @@ namespace ICSharpCode.NRefactory.CSharp {
 		S VisitPointerReferenceExpression(PointerReferenceExpression pointerReferenceExpression, T data);
 		S VisitPrimitiveExpression(PrimitiveExpression primitiveExpression, T data);
 		S VisitSizeOfExpression(SizeOfExpression sizeOfExpression, T data);
+		S VisitLoadTypeArgumentExpression(LoadTypeArgumentExpression loadTypeArgumentExpression, T data);
 		S VisitStackAllocExpression(StackAllocExpression stackAllocExpression, T data);
 		S VisitThisReferenceExpression(ThisReferenceExpression thisReferenceExpression, T data);
 		S VisitTypeOfExpression(TypeOfExpression typeOfExpression, T data);
