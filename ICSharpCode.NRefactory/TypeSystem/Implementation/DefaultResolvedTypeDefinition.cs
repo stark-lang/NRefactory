@@ -556,7 +556,7 @@ namespace ICSharpCode.NRefactory.TypeSystem.Implementation
 					}
 				}
 			}
-			if (!hasNonInterface && !(this.Name == "Object" && this.Namespace == "system" && this.TypeParameterCount == 0)) {
+			if (!hasNonInterface && !(this.Name == "Object" && this.Namespace == "core" && this.TypeParameterCount == 0)) {
 				KnownTypeCode primitiveBaseType;
 				switch (this.Kind) {
 					case TypeKind.Enum:

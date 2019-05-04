@@ -360,7 +360,7 @@ namespace ICSharpCode.NRefactory.TypeSystem.Implementation
 						internalsVisibleTo = (
 							from attr in this.AssemblyAttributes
 							where attr.AttributeType.Name == "InternalsVisibleToAttribute"
-							&& attr.AttributeType.Namespace == "system.runtime.compiler"
+							&& attr.AttributeType.Namespace == "core.runtime.compiler"
 							&& attr.PositionalArguments.Count == 1
 							select GetShortName(attr.PositionalArguments.Single().ConstantValue as string)
 						).ToArray();
@@ -406,7 +406,7 @@ namespace ICSharpCode.NRefactory.TypeSystem.Implementation
 				if (unresolved.DeclaringTypeDefinition != null) {
 					ITypeDefinition declaringType = GetTypeDefinition(unresolved.DeclaringTypeDefinition);
 					return new DefaultResolvedTypeDefinition(context.WithCurrentTypeDefinition(declaringType), unresolved);
-				} else if (unresolved.Name == "Void" && unresolved.Namespace == "system" && unresolved.TypeParameters.Count == 0) {
+				} else if (unresolved.Name == "Void" && unresolved.Namespace == "core" && unresolved.TypeParameters.Count == 0) {
 					return new VoidTypeDefinition(context, unresolved);
 				} else {
 					return new DefaultResolvedTypeDefinition(context, unresolved);

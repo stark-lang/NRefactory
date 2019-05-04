@@ -205,7 +205,7 @@ namespace ICSharpCode.NRefactory.TypeSystem.Implementation
 
 		static bool IsOptionalAttribute (IType attributeType)
 		{
-			return attributeType.Name == "OptionalAttribute" && attributeType.Namespace == "system.runtime.interopServices";
+			return attributeType.Name == "OptionalAttribute" && attributeType.Namespace == "core.runtime.interopServices";
 		}
 		
 		public IParameter CreateResolvedParameter(ITypeResolveContext context)

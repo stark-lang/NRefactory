@@ -29,7 +29,7 @@ namespace ICSharpCode.NRefactory.TypeSystem
 	{
 		static bool IsComAttribute(IAttribute attribute, string name)
 		{
-			return attribute.AttributeType.Name == name && attribute.AttributeType.Namespace == "system.runtime.interopServices";
+			return attribute.AttributeType.Name == name && attribute.AttributeType.Namespace == "core.runtime.interopServices";
 		}
 		
 		/// <summary>

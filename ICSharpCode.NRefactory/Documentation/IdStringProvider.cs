@@ -104,7 +104,7 @@ namespace ICSharpCode.NRefactory.Documentation
 		{
 			switch (type.Kind) {
 				case TypeKind.Dynamic:
-					b.Append(explicitInterfaceImpl ? "system#Object" : "system.Object");
+					b.Append(explicitInterfaceImpl ? "core#Object" : "core.Object");
 					break;
 				case TypeKind.TypeParameter:
 					ITypeParameter tp = (ITypeParameter)type;
