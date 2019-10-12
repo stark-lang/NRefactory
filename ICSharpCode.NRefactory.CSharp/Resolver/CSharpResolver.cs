@@ -2487,7 +2487,7 @@ namespace ICSharpCode.NRefactory.CSharp.Resolver
 			switch (typeDef.KnownTypeCode) {
 				case KnownTypeCode.Boolean:
 					return false;
-				case KnownTypeCode.Char:
+				case KnownTypeCode.Rune:
 					return '\0';
 				case KnownTypeCode.SByte:
 					return (sbyte)0;

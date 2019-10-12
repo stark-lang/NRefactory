@@ -248,7 +248,7 @@ namespace ICSharpCode.NRefactory.TypeSystem.Implementation
 			switch (typeCode) {
 				case KnownTypeCode.Boolean:
 					return ReadByte() != 0;
-				case KnownTypeCode.Char:
+				case KnownTypeCode.Rune:
 					return (char)ReadUInt16();
 				case KnownTypeCode.SByte:
 					return ReadSByte();
@@ -330,7 +330,7 @@ namespace ICSharpCode.NRefactory.TypeSystem.Implementation
 				case 0x02:
 					return compilation.FindType(KnownTypeCode.Boolean);
 				case 0x03:
-					return compilation.FindType(KnownTypeCode.Char);
+					return compilation.FindType(KnownTypeCode.Rune);
 				case 0x04:
 					return compilation.FindType(KnownTypeCode.SByte);
 				case 0x05:

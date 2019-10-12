@@ -39,7 +39,7 @@ namespace ICSharpCode.NRefactory.TypeSystem
 		/// <summary><c>bool</c> (System.Boolean)</summary>
 		Boolean,
 		/// <summary><c>char</c> (System.Char)</summary>
-		Char,
+		Rune,
 		/// <summary><c>sbyte</c> (System.SByte)</summary>
 		SByte,
 		/// <summary><c>byte</c> (System.Byte)</summary>
@@ -138,7 +138,7 @@ namespace ICSharpCode.NRefactory.TypeSystem
 			new KnownTypeReference(KnownTypeCode.Object,   "core", "Object", baseType: KnownTypeCode.None),
 			new KnownTypeReference(KnownTypeCode.DBNull,   "core", "DBNull"),
 			new KnownTypeReference(KnownTypeCode.Boolean,  "core", "Bool",  baseType: KnownTypeCode.ValueType),
-			new KnownTypeReference(KnownTypeCode.Char,     "core", "Rune",     baseType: KnownTypeCode.ValueType),
+			new KnownTypeReference(KnownTypeCode.Rune,     "core", "Rune",     baseType: KnownTypeCode.ValueType),
 			new KnownTypeReference(KnownTypeCode.SByte,    "core", "Int8",    baseType: KnownTypeCode.ValueType),
 			new KnownTypeReference(KnownTypeCode.Byte,     "core", "UInt8",     baseType: KnownTypeCode.ValueType),
 			new KnownTypeReference(KnownTypeCode.Int16,    "core", "Int16",    baseType: KnownTypeCode.ValueType),
@@ -210,7 +210,7 @@ namespace ICSharpCode.NRefactory.TypeSystem
 		/// <summary>
 		/// Gets a type reference pointing to the <c>char</c> type.
 		/// </summary>
-		public static readonly KnownTypeReference Char = Get(KnownTypeCode.Char);
+		public static readonly KnownTypeReference Char = Get(KnownTypeCode.Rune);
 		
 		/// <summary>
 		/// Gets a type reference pointing to the <c>sbyte</c> type.
@@ -464,7 +464,7 @@ namespace ICSharpCode.NRefactory.TypeSystem
 					return "object";
 				case KnownTypeCode.Boolean:
 					return "bool";
-				case KnownTypeCode.Char:
+				case KnownTypeCode.Rune:
 					return "char";
 				case KnownTypeCode.SByte:
 					return "sbyte";

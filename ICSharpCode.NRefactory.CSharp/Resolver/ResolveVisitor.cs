@@ -767,7 +767,7 @@ namespace ICSharpCode.NRefactory.CSharp.Resolver
 					if (initRR.Type.Kind == TypeKind.Array) {
 						pointerType = new PointerType(((ArrayType)initRR.Type).ElementType);
 					} else if (ReflectionHelper.GetTypeCode(initRR.Type) == TypeCode.String) {
-						pointerType = new PointerType(resolver.Compilation.FindType(KnownTypeCode.Char));
+						pointerType = new PointerType(resolver.Compilation.FindType(KnownTypeCode.Rune));
 					} else {
 						pointerType = null;
 						ProcessConversion(variableInitializer.Initializer, initRR, result.Type);

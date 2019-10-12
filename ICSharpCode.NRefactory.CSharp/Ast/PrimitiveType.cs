@@ -150,7 +150,7 @@ namespace ICSharpCode.NRefactory.CSharp {
 				case "decimal":
 					return KnownTypeCode.Decimal;
 				case "char":
-					return KnownTypeCode.Char;
+					return KnownTypeCode.Rune;
 				case "void":
 					return KnownTypeCode.Void;
 				default:
